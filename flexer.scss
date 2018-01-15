@@ -1,0 +1,185 @@
+$breakpoints: (
+    'sm': 0,
+    'md': 500px,
+    'lg': 1000px,
+);
+
+$flexer: (
+    "display": (
+        prefix: "d",
+        values: (
+            "f" : "flex",
+            "if": "inline-flex"
+        )
+    ),
+    "flex-direction": (
+        prefix: "fd",
+        values: (
+            "r" : "row",
+            "rr": "row-reverse",
+            "c" : "column",
+            "cr": "column-reverse"
+        )
+    ),
+    "flex-wrap": (
+        prefix: "fw",
+        values: (
+            "nw": "no-wrap",
+            "w" : "wrap",
+            "wr": "wrap-reverse"
+        )
+    ),
+    "flex-flow": (
+        prefix: "ff",
+        values: (
+            "r-nw" : "row no-wrap",
+            "rr-nw": "row-reverse no-wrap",
+            "r-w"  : "row wrap",
+            "rr-w" : "row-reverse wrap",
+            "r-wr" : "row wrap-reverse",
+            "rr-wr": "row-reverse wrap-reverse",
+            "c-nw" : "column no-wrap",
+            "cr-nw": "column-reverse no-wrap",
+            "c-w"  : "column wrap",
+            "cr-w" : "column-reverse wrap",
+            "c-wr" : "column wrap-reverse",
+            "cr-wr": "column-reverse wrap-reverse",
+        )
+    ),
+    "flex-basis": (
+        prefix: "fb",
+        values: (
+            "c"  : "content",
+            "f"  : "fill",
+            "mic": "min-content",
+            "mac": "max-content"
+        )
+    ),
+    "flex-grow": (
+        prefix: "fg",
+        values: (
+            "0": "0",
+            "1": "1",
+            "u": "unset"
+        )
+    ),
+    "flex-shrink": (
+        prefix: "fs",
+        values: (
+            "0": "0",
+            "1": "1",
+            "u": "unset"
+        )
+    ),
+    "align-items": (
+        prefix: "ai",
+        values: (
+            "n" : "normal",
+            "s" : "stretch",
+            "c" : "center",
+            "st": "start",
+            "e" : "end",
+            "fs": "flex-start",
+            "fe": "flex-end",
+            "ss": "self-start",
+            "se": "self-end",
+            "l" : "left",
+            "r" : "right",
+            "b" : "baseline",
+            "fb": "first baseline",
+            "lb": "last baseline",
+            "sc": "safe center",
+            "uc": "unsafe center",
+            "u" : "unset"
+        )
+    ),
+    "align-content": (
+        prefix: "ai",
+        values: (
+            "c" : "center",
+            "st": "start",
+            "e" : "end",
+            "fs": "flex-start",
+            "fe": "flex-end",
+            "l" : "left",
+            "r" : "right",
+            "b" : "baseline",
+            "fb": "first baseline",
+            "lb": "last baseline",
+            "sb": "space-between",
+            "sa": "space-around",
+            "se": "space-evenly",
+            "s" : "stretch",
+            "sc": "safe center",
+            "uc": "unsafe center",
+            "u" : "unset"
+        )
+    ),
+    "align-self": (
+        prefix: "as",
+        values: (
+            "a" : "auto",
+            "n" : "normal",
+            "c" : "center",
+            "st": "start",
+            "e" : "end",
+            "ss": "self-start",
+            "se": "self-end",
+            "fs": "flex-start",
+            "fe": "flex-end",
+            "l" : "left",
+            "r" : "right",
+            "b" : "baseline",
+            "fb": "first baseline",
+            "lb": "last baseline",
+            "s" : "stretch",
+            "sc": "safe center",
+            "uc": "unsafe center",
+            "u" : "unset"
+        )
+    ),
+    "justify-content": (
+        prefix: "jc",
+        values: (
+            "c" : "center",
+            "st": "start",
+            "e" : "end",
+            "fs": "flex-start",
+            "fe": "flex-end",
+            "l" : "l",
+            "r" : "r",
+            "b" : "baseline",
+            "fb": "first baseline",
+            "lb": "last baseline",
+            "sb": "space-between",
+            "sa": "space-around",
+            "se": "space-evenly",
+            "s" : "stretch",
+            "sc": "safe center",
+            "uc": "unsafe center",
+            "u" : "unset"
+        )
+    ),
+    "writing-mode": (
+        prefix: "wm",
+        values: (
+            "htb": "horizontal-tb",
+            "slr": "sideways-lr",
+            "srl": "sideways-rl",
+            "vlr": "vertical-lr",
+            "vrl": "vertical-rl"
+        )
+    ),
+);
+
+@each $breakpointName, $breakpointSize in $breakpoints {
+    @media screen and (min-width: $breakpointSize) {
+        @each $prop, $config in $flexer {
+            @each $prefix, $value in map-get($config, "values") {
+                .#{$breakpointName}\:#{map-get($config, "prefix")}-#{$prefix} {
+                    #{$prop}: #{$value};
+                }
+            }
+        }
+    }
+}
